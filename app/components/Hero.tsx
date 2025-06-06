@@ -153,7 +153,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 1 }}
           className="mb-12"
         >
-          <motion.p className="text-xl md:text-2xl lg:text-3xl glow-text font-poppins font-light max-w-4xl mx-auto">
+          <motion.p className="text-lg md:text-xl lg:text-2xl glow-text font-poppins font-light max-w-4xl mx-auto">
             {"Professional Wedding & Event Photography in Edmonton".split('').map((char, index) => (
               <motion.span
                 key={index}
