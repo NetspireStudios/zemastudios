@@ -10,11 +10,6 @@ import Gallery from './components/Gallery'
 import Contact from './components/Contact'
 import Navigation from './components/Navigation'
 import Preloader from './components/Preloader'
-import WaveTransition from './components/WaveTransition'
-import ParallaxWaveTransition from './components/ParallaxWaveTransition'
-import FullScreenWaveOverlay from './components/FullScreenWaveOverlay'
-import WaveTransitionSection from './components/WaveTransitionSection'
-
 export default function Home() {
   return (
     <>
@@ -24,29 +19,13 @@ export default function Home() {
         <Navigation />
         
         {/* Hero Section */}
-        <div className="relative z-10">
-          <Hero />
-        </div>
+        <Hero />
         
-        {/* MASSIVE Wave Transition Section - 300vh height */}
-        <WaveTransitionSection />
-        
-        {/* All Other Sections - After the wave transition */}
-        <div className="relative z-20">
-          <About />
-        </div>
-        
-        <div className="relative z-30">
-          <Services />
-        </div>
-        
-        <div className="relative z-40">
-          <Gallery />
-        </div>
-        
-        <div className="relative z-50">
-          <Contact />
-        </div>
+        {/* All Content Sections */}
+        <About />
+        <Services />
+        <Gallery />
+        <Contact />
       </main>
     </>
   )

@@ -16,28 +16,23 @@ const Gallery = () => {
   const images = [
     {
       src: '/images/Wedphoto1.png',
-      alt: 'Beautiful wedding ceremony capture',
-      span: 'md:col-span-2 md:row-span-2'
+      alt: 'Beautiful wedding ceremony capture'
     },
     {
       src: '/images/Wedphoto2.png',
-      alt: 'Romantic couple portrait',
-      span: 'md:col-span-1 md:row-span-1'
+      alt: 'Romantic couple portrait'
     },
     {
       src: '/images/Wedphoto3.png',
-      alt: 'Wedding reception moments',
-      span: 'md:col-span-1 md:row-span-1'
+      alt: 'Wedding reception moments'
     },
     {
       src: '/images/Wedphoto4.png',
-      alt: 'Intimate wedding details',
-      span: 'md:col-span-2 md:row-span-1'
+      alt: 'Intimate wedding details'
     },
     {
       src: '/images/wedphoto5.png',
-      alt: 'Celebration and joy',
-      span: 'md:col-span-1 md:row-span-1'
+      alt: 'Celebration and joy'
     }
   ]
 
@@ -61,7 +56,7 @@ const Gallery = () => {
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px]"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
@@ -72,15 +67,18 @@ const Gallery = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`${image.span} relative group cursor-pointer overflow-hidden rounded-lg`}
+              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-xl"
               onClick={() => setSelectedImage(image.src)}
             >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
+              <div className="aspect-[4/3] w-full">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-contain bg-slate-900 transition-transform duration-300 group-hover:scale-102"
+                  priority={index < 3}
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="text-sm font-poppins font-medium">{image.alt}</p>

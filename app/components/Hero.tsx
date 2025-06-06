@@ -78,9 +78,9 @@ const Hero = () => {
         />
       </div>
 
-      {/* Animated background elements */}
+      {/* Optimized background elements */}
       <div className="absolute inset-0 z-5">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-white/20 rounded-full"
@@ -89,14 +89,14 @@ const Hero = () => {
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -30, 0],
-              opacity: [0, 1, 0],
-              scale: [0, 1, 0],
+              y: [0, -20, 0],
+              opacity: [0, 0.8, 0],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 4,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: i * 0.5,
+              ease: "easeInOut"
             }}
           />
         ))}
@@ -230,23 +230,24 @@ const Hero = () => {
           className="absolute bottom-40 left-20 w-4 h-4 bg-gradient-to-r from-primary-300 to-secondary-500 rounded-full opacity-50"
         />
         
-        {/* Additional floating hearts and sparkles */}
-        {[...Array(5)].map((_, i) => (
+        {/* Optimized floating hearts */}
+        {[...Array(3)].map((_, i) => (
           <motion.div
             key={`heart-${i}`}
             className="absolute opacity-30"
             style={{
-              left: `${20 + i * 15}%`,
-              top: `${30 + i * 10}%`,
+              left: `${25 + i * 25}%`,
+              top: `${40 + i * 15}%`,
             }}
             animate={{
-              y: [0, -20, 0],
-              opacity: [0.3, 0.6, 0.3],
+              y: [0, -15, 0],
+              opacity: [0.2, 0.5, 0.2],
             }}
             transition={{
-              duration: 4 + i,
+              duration: 6,
               repeat: Infinity,
-              delay: i * 0.5,
+              delay: i * 2,
+              ease: "easeInOut"
             }}
           >
             <Heart className="h-4 w-4 text-pink-300" />
@@ -254,30 +255,32 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* Enhanced Scroll Indicator - Moved Higher */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2.5 }}
-        className="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-30"
-      >
+      {/* Perfectly Centered Scroll Indicator */}
+      <div className="absolute bottom-24 left-0 right-0 z-30">
         <motion.div
-          animate={{ y: [0, 15, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center text-white/80 cursor-pointer group"
-          onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.5 }}
+          className="flex justify-center"
         >
-          <span className="text-lg mb-4 font-poppins font-light group-hover:text-primary-400 transition-colors glow-text">
-            Discover Our Story
-          </span>
           <motion.div
-            whileHover={{ scale: 1.2 }}
-            className="p-3 rounded-full glass-effect group-hover:bg-primary-500/20 transition-all duration-300"
+            animate={{ y: [0, 15, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex flex-col items-center text-white/80 cursor-pointer group"
+            onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            <ArrowDown className="h-6 w-6" />
+            <span className="text-lg mb-4 font-poppins font-light group-hover:text-primary-400 transition-colors glow-text text-center">
+              Discover Our Story
+            </span>
+            <motion.div
+              whileHover={{ scale: 1.2 }}
+              className="p-3 rounded-full glass-effect group-hover:bg-primary-500/20 transition-all duration-300"
+            >
+              <ArrowDown className="h-6 w-6" />
+            </motion.div>
           </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   )
 }

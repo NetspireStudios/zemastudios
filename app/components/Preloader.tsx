@@ -42,72 +42,26 @@ const Preloader = () => {
               transition={{ duration: 4, repeat: Infinity }}
             />
 
-            {/* Floating gradient orbs */}
-            {[...Array(5)].map((_, i) => (
+            {/* Simplified gradient orbs */}
+            {[...Array(3)].map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute rounded-full"
                 style={{
-                  background: `radial-gradient(circle, ${
-                    i % 2 === 0 ? 'rgba(59, 130, 246, 0.15)' : 'rgba(147, 197, 253, 0.1)'
-                  } 0%, transparent 70%)`,
-                  width: `${200 + i * 100}px`,
-                  height: `${200 + i * 100}px`,
-                  left: `${10 + i * 20}%`,
-                  top: `${10 + i * 15}%`,
+                  background: `radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)`,
+                  width: `${300 + i * 150}px`,
+                  height: `${300 + i * 150}px`,
+                  left: `${15 + i * 30}%`,
+                  top: `${20 + i * 20}%`,
                 }}
                 animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.6, 0.3],
-                  x: [0, 50, 0],
-                  y: [0, -30, 0],
+                  opacity: [0.2, 0.4, 0.2],
                 }}
                 transition={{
-                  duration: 8 + i * 2,
+                  duration: 4,
                   repeat: Infinity,
-                  delay: i * 1.5,
-                }}
-              />
-            ))}
-
-            {/* Animated grid lines */}
-            <div className="absolute inset-0 opacity-10">
-              {[...Array(10)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute h-full w-px bg-gradient-to-b from-transparent via-primary-400 to-transparent"
-                  style={{ left: `${i * 10}%` }}
-                  animate={{
-                    opacity: [0.1, 0.4, 0.1],
-                    scaleY: [0.5, 1, 0.5],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: i * 0.2,
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* Floating particles */}
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-primary-400 rounded-full"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -100, 0],
-                  opacity: [0, 1, 0],
-                  scale: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 6 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
+                  delay: i * 1,
+                  ease: "easeInOut"
                 }}
               />
             ))}
