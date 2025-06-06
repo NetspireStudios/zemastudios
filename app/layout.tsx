@@ -1,8 +1,19 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Playfair_Display, Poppins } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
+const playfair = Playfair_Display({ 
+  subsets: ['latin'], 
+  variable: '--font-playfair',
+  display: 'swap'
+})
+const poppins = Poppins({ 
+  subsets: ['latin'], 
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-poppins',
+  display: 'swap'
+})
 
 export const metadata: Metadata = {
   title: 'ZM Studio Photography - Professional Wedding & Event Photography',
@@ -17,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} ${playfair.variable} ${poppins.variable} antialiased`}>
         {children}
       </body>
     </html>

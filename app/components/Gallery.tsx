@@ -51,10 +51,10 @@ const Gallery = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 gradient-text">
             Our Portfolio
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-poppins">
             Every moment tells a story. Browse through our collection of captured memories, 
             where love, joy, and celebration come together in perfect harmony.
           </p>
@@ -83,7 +83,7 @@ const Gallery = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-sm font-medium">{image.alt}</p>
+                <p className="text-sm font-poppins font-medium">{image.alt}</p>
               </div>
             </motion.div>
           ))}

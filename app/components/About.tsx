@@ -13,8 +13,53 @@ const About = () => {
   })
 
   return (
-    <section id="about" className="py-20 bg-slate-900">
-      <div className="max-w-7xl mx-auto section-padding">
+    <section id="about" className="relative py-20 bg-slate-900 overflow-hidden">
+      {/* Background Images */}
+      <div className="absolute inset-0 z-0">
+        <motion.div
+          initial={{ scale: 1.1, opacity: 0.08 }}
+          animate={{ scale: 1.05, opacity: 0.12 }}
+          transition={{ duration: 25, repeat: Infinity, repeatType: "reverse" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src="/images/wedphoto5.png"
+            alt="Wedding background"
+            fill
+            className="object-cover"
+          />
+        </motion.div>
+        
+        {/* Gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-900/90 to-slate-900/95" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-900/10 via-transparent to-secondary-900/10" />
+      </div>
+
+      {/* Floating background elements */}
+      <div className="absolute inset-0 z-5">
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-gradient-to-r from-primary-400/40 to-secondary-400/40 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.6, 0.2],
+              scale: [0.5, 1, 0.5],
+            }}
+            transition={{
+              duration: 5 + Math.random() * 3,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto section-padding">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <motion.div
@@ -23,15 +68,15 @@ const About = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 gradient-text">
               About ZM Studio
             </h2>
-            <p className="text-lg text-gray-300 mb-6 leading-relaxed">
+            <p className="text-lg text-gray-300 mb-6 leading-relaxed font-poppins">
               For years, I've been a popular photographer in many types of events, working with couples 
               to capture their special day. I meet with each couple beforehand, getting a sense of their 
               personality and style so that I can bring them to life on camera.
             </p>
-            <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+            <p className="text-lg text-gray-300 mb-8 leading-relaxed font-poppins">
               There is nothing more gratifying than seeing smiling, happy couples as they relive their 
               cherished wedding memories through my images. Every photograph tells a unique story of love, 
               joy, and celebration.
@@ -52,7 +97,7 @@ const About = () => {
                   className="flex items-center space-x-3"
                 >
                   <feature.icon className="h-6 w-6 text-primary-400" />
-                  <span className="text-gray-300">{feature.text}</span>
+                  <span className="text-gray-300 font-poppins">{feature.text}</span>
                 </motion.div>
               ))}
             </div>

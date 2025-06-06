@@ -4,6 +4,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Camera, Video, Heart, Image as ImageIcon, Calendar, Users } from 'lucide-react'
+import Image from 'next/image'
 
 const Services = () => {
   const { ref, inView } = useInView({
@@ -51,8 +52,54 @@ const Services = () => {
   ]
 
   return (
-    <section id="services" className="py-20 bg-slate-900">
-      <div className="max-w-7xl mx-auto section-padding">
+    <section id="services" className="relative py-20 bg-slate-900 overflow-hidden">
+      {/* Background Images */}
+      <div className="absolute inset-0 z-0">
+        <motion.div
+          initial={{ scale: 1.05, opacity: 0.06 }}
+          animate={{ scale: 1.1, opacity: 0.1 }}
+          transition={{ duration: 30, repeat: Infinity, repeatType: "reverse" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src="/images/Wedphoto1.png"
+            alt="Wedding background"
+            fill
+            className="object-cover opacity-50 mix-blend-overlay"
+          />
+        </motion.div>
+        
+        {/* Gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/96 via-slate-900/92 to-slate-900/96" />
+        <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/15 via-transparent to-primary-900/15" />
+      </div>
+
+      {/* Floating background elements */}
+      <div className="absolute inset-0 z-5">
+        {[...Array(18)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-gradient-to-r from-secondary-300/20 to-primary-300/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -50, 0],
+              opacity: [0.1, 0.4, 0.1],
+              scale: [0.3, 1, 0.3],
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 6 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 8,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto section-padding">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
@@ -60,10 +107,10 @@ const Services = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 gradient-text">
             Our Services
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-poppins">
             Photography, Videography, recording in live events, Posters, Digital albums, and many other 
             professional services to make your special day unforgettable.
           </p>
@@ -87,12 +134,12 @@ const Services = () => {
                 <service.icon className="h-8 w-8 text-white" />
               </motion.div>
               
-              <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-              <p className="text-gray-300 mb-4 leading-relaxed">{service.description}</p>
+              <h3 className="text-xl font-poppins font-bold text-white mb-3">{service.title}</h3>
+              <p className="text-gray-300 mb-4 leading-relaxed font-poppins">{service.description}</p>
               
               <ul className="space-y-2">
                 {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center text-sm text-gray-400">
+                  <li key={featureIndex} className="flex items-center text-sm text-gray-400 font-poppins">
                     <div className="w-2 h-2 bg-primary-400 rounded-full mr-3"></div>
                     {feature}
                   </li>

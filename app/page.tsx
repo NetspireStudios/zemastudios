@@ -9,16 +9,20 @@ import Services from './components/Services'
 import Gallery from './components/Gallery'
 import Contact from './components/Contact'
 import Navigation from './components/Navigation'
+import Preloader from './components/Preloader'
 
 export default function Home() {
   return (
-    <main className="relative">
-      <Navigation />
-      <Hero />
-      <About />
-      <Services />
-      <Gallery />
-      <Contact />
-    </main>
+    <>
+      <Preloader />
+      <main className="relative">
+        <Navigation />
+        <Hero />
+        <About />
+        <Services />
+        <Gallery />
+        <Contact />
+      </main>
+    </>
   )
 } 

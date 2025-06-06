@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'playfair': ['var(--font-playfair)', 'serif'],
+        'poppins': ['var(--font-poppins)', 'sans-serif'],
+      },
       colors: {
         primary: {
           50: '#eff6ff',
