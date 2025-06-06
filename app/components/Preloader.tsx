@@ -2,25 +2,20 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Camera, Aperture, Focus } from 'lucide-react'
+import { Camera } from 'lucide-react'
 
 const Preloader = () => {
   const [isLoading, setIsLoading] = useState(true)
-  const [progress, setProgress] = useState(0)
+  const [showFlash, setShowFlash] = useState(false)
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prevProgress) => {
-        if (prevProgress >= 100) {
-          clearInterval(timer)
-          setTimeout(() => setIsLoading(false), 500)
-          return 100
-        }
-        return prevProgress + Math.random() * 15
-      })
-    }, 150)
+    // Show preloader for 3 seconds, then flash and exit
+    const timer = setTimeout(() => {
+      setShowFlash(true)
+      setTimeout(() => setIsLoading(false), 300) // Flash duration
+    }, 3000)
 
-    return () => clearInterval(timer)
+    return () => clearTimeout(timer)
   }, [])
 
   return (
@@ -28,79 +23,67 @@ const Preloader = () => {
       {isLoading && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.1 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
           className="fixed inset-0 z-50 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center"
         >
-          {/* Background animated grid */}
-          <div className="absolute inset-0 opacity-10">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-px h-full bg-gradient-to-b from-transparent via-primary-400 to-transparent"
-                style={{ left: `${i * 5}%` }}
-                animate={{
-                  opacity: [0.1, 0.3, 0.1],
-                  scaleY: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: i * 0.1,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Main content */}
-          <div className="relative z-10 text-center">
-            {/* Camera lens animation */}
+          {/* Main content - perfectly centered */}
+          <div className="flex flex-col items-center justify-center text-center">
+            {/* Big Camera Animation */}
             <motion.div
-              className="relative mx-auto mb-8"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
+              className="relative mb-8"
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ duration: 1, type: "spring", bounce: 0.3 }}
             >
-              {/* Outer ring */}
+              {/* Outer glow ring */}
               <motion.div
-                className="w-32 h-32 rounded-full border-4 border-primary-400/30 flex items-center justify-center relative"
+                className="absolute inset-0 w-48 h-48 rounded-full"
+                animate={{ 
+                  boxShadow: [
+                    "0 0 40px rgba(59, 130, 246, 0.3)",
+                    "0 0 80px rgba(59, 130, 246, 0.6)",
+                    "0 0 40px rgba(59, 130, 246, 0.3)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              
+              {/* Camera lens outer ring */}
+              <motion.div
+                className="w-48 h-48 rounded-full border-4 border-primary-400/40 flex items-center justify-center relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
               >
-                {/* Middle ring */}
+                {/* Camera lens inner ring */}
                 <motion.div
-                  className="w-24 h-24 rounded-full border-2 border-secondary-400/50 flex items-center justify-center relative"
+                  className="w-36 h-36 rounded-full border-3 border-secondary-400/60 flex items-center justify-center relative bg-gradient-to-br from-primary-900/30 to-secondary-900/30"
                   animate={{ rotate: -360 }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                 >
-                  {/* Camera icon */}
+                  {/* Main camera icon */}
                   <motion.div
-                    className="w-16 h-16 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center shadow-2xl"
+                    className="w-24 h-24 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center shadow-2xl"
                     animate={{ 
                       scale: [1, 1.1, 1],
-                      boxShadow: [
-                        "0 0 20px rgba(59, 130, 246, 0.3)",
-                        "0 0 40px rgba(59, 130, 246, 0.6)",
-                        "0 0 20px rgba(59, 130, 246, 0.3)"
-                      ]
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <Camera className="h-8 w-8 text-white" />
+                    <Camera className="h-12 w-12 text-white" />
                   </motion.div>
 
-                  {/* Aperture blades */}
+                  {/* Aperture blades - 8 blades around the camera */}
                   {[...Array(8)].map((_, i) => (
                     <motion.div
                       key={i}
-                      className="absolute w-1 h-6 bg-gradient-to-b from-primary-300 to-secondary-300"
+                      className="absolute w-1.5 h-8 bg-gradient-to-b from-primary-300 to-secondary-300 rounded-full"
                       style={{
                         transformOrigin: '50% 100%',
-                        transform: `rotate(${i * 45}deg) translateY(-12px)`,
+                        transform: `rotate(${i * 45}deg) translateY(-16px)`,
                       }}
                       animate={{
-                        scaleY: [0.5, 1, 0.5],
-                        opacity: [0.3, 1, 0.3],
+                        scaleY: [0.6, 1, 0.6],
+                        opacity: [0.4, 1, 0.4],
                       }}
                       transition={{
                         duration: 1.5,
@@ -111,110 +94,72 @@ const Preloader = () => {
                   ))}
                 </motion.div>
 
-                {/* Focus indicators */}
+                {/* Focus corner indicators */}
                 {[...Array(4)].map((_, i) => (
                   <motion.div
                     key={i}
-                    className="absolute w-2 h-2 bg-primary-400 rounded-full"
+                    className="absolute w-3 h-3 border-2 border-primary-400"
                     style={{
-                      top: '50%',
-                      left: '50%',
-                      transform: `translate(-50%, -50%) rotate(${i * 90}deg) translateY(-20px)`,
+                      top: i < 2 ? '10px' : 'auto',
+                      bottom: i >= 2 ? '10px' : 'auto',
+                      left: i % 2 === 0 ? '10px' : 'auto',
+                      right: i % 2 === 1 ? '10px' : 'auto',
+                      borderTop: i >= 2 ? 'none' : '2px solid',
+                      borderBottom: i < 2 ? 'none' : '2px solid',
+                      borderLeft: i % 2 === 1 ? 'none' : '2px solid',
+                      borderRight: i % 2 === 0 ? 'none' : '2px solid',
                     }}
                     animate={{
-                      scale: [0, 1, 0],
-                      opacity: [0, 1, 0],
+                      opacity: [0.3, 1, 0.3],
+                      scale: [0.8, 1.2, 0.8],
                     }}
                     transition={{
                       duration: 2,
                       repeat: Infinity,
-                      delay: i * 0.5,
+                      delay: i * 0.3,
                     }}
                   />
                 ))}
               </motion.div>
             </motion.div>
 
-            {/* Loading text with typewriter effect */}
+            {/* "Smile for the camera" text */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-6"
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-center"
             >
-              <h2 className="text-2xl md:text-3xl font-playfair font-bold gradient-text mb-2">
-                ZM Studio
-              </h2>
-              <motion.p
-                className="text-gray-300 font-poppins"
-                animate={{ opacity: [0.5, 1, 0.5] }}
+              <motion.h2 
+                className="text-3xl md:text-4xl font-playfair font-bold gradient-text mb-3"
+                animate={{ 
+                  opacity: [0.8, 1, 0.8]
+                }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                Capturing your perfect moments...
+                Smile for the camera
+              </motion.h2>
+              <motion.p
+                className="text-lg text-gray-300 font-poppins"
+                animate={{ opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+              >
+                ZM Studio Photography
               </motion.p>
             </motion.div>
-
-            {/* Progress bar */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="w-64 mx-auto"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-poppins text-gray-400">Loading</span>
-                <span className="text-sm font-poppins text-primary-400">{Math.round(progress)}%</span>
-              </div>
-              <div className="w-full h-2 bg-slate-700 rounded-full overflow-hidden">
-                <motion.div
-                  className="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full"
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.3 }}
-                />
-              </div>
-            </motion.div>
-
-            {/* Floating camera elements */}
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute opacity-20"
-                style={{
-                  left: `${20 + i * 10}%`,
-                  top: `${30 + (i % 2) * 40}%`,
-                }}
-                animate={{
-                  y: [0, -20, 0],
-                  rotate: [0, 360],
-                  opacity: [0.1, 0.3, 0.1],
-                }}
-                transition={{
-                  duration: 4 + i,
-                  repeat: Infinity,
-                  delay: i * 0.5,
-                }}
-              >
-                {i % 3 === 0 ? (
-                  <Aperture className="h-6 w-6 text-primary-400" />
-                ) : i % 3 === 1 ? (
-                  <Focus className="h-5 w-5 text-secondary-400" />
-                ) : (
-                  <Camera className="h-4 w-4 text-primary-300" />
-                )}
-              </motion.div>
-            ))}
           </div>
 
-          {/* Flash effect when completed */}
-          {progress >= 100 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{ duration: 0.3 }}
-              className="absolute inset-0 bg-white"
-            />
-          )}
+          {/* Camera flash effect */}
+          <AnimatePresence>
+            {showFlash && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0 bg-white z-10"
+              />
+            )}
+          </AnimatePresence>
         </motion.div>
       )}
     </AnimatePresence>
