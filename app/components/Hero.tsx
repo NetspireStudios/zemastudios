@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowDown, Camera, Sparkles, Heart } from 'lucide-react'
 import Image from 'next/image'
+import ImageSlider from './ImageSlider'
 
 const Hero = () => {
   const [currentText, setCurrentText] = useState('')
@@ -40,43 +41,41 @@ const Hero = () => {
     return () => clearTimeout(timer)
   }, [charIndex, isDeleting, textIndex, texts])
 
+  const sliderImages = [
+    '/images/Wedphoto1.png',
+    '/images/Wedphoto2.png',
+    '/images/Wedphoto3.png',
+    '/images/Wedphoto4.png',
+    '/images/wedphoto5.png'
+  ]
+
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Images with Parallax */}
+      {/* Background Image Slider */}
       <div className="absolute inset-0 z-0">
-        <motion.div
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
-          className="absolute inset-0"
-        >
-          <Image
-            src="/images/Wedphoto1.png"
-            alt="Beautiful wedding photography by ZM Studio"
-            fill
-            className="object-cover"
-            priority
-          />
-        </motion.div>
+        <ImageSlider 
+          images={sliderImages}
+          className="w-full h-full"
+          autoPlay={true}
+          interval={6000}
+        />
         
-        {/* Additional background layers */}
+        {/* Enhanced gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-slate-900/70 to-slate-900/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-900/40 via-transparent to-secondary-900/40" />
+        
+        {/* Dynamic glow overlay */}
         <motion.div
-          initial={{ opacity: 0.3 }}
-          animate={{ opacity: [0.3, 0.1, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity }}
           className="absolute inset-0"
-        >
-          <Image
-            src="/images/Wedphoto2.png"
-            alt="Wedding moments"
-            fill
-            className="object-cover opacity-20 mix-blend-overlay"
-          />
-        </motion.div>
-
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-900/30 via-transparent to-secondary-900/30" />
+          animate={{
+            background: [
+              "radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)",
+              "radial-gradient(circle at 70% 60%, rgba(147, 197, 253, 0.15) 0%, transparent 50%)",
+              "radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)"
+            ]
+          }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
       </div>
 
       {/* Animated background elements */}
@@ -105,31 +104,24 @@ const Hero = () => {
 
       {/* Main Content */}
       <div className="relative z-10 text-center max-w-6xl mx-auto section-padding">
-        {/* Brand Logo Animation */}
+        {/* Brand Title - Centered */}
         <motion.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
           className="mb-8"
         >
-          <div className="flex items-center justify-center space-x-4 mb-4">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-16 h-16 rounded-full bg-gradient-to-r from-primary-400 to-secondary-400 flex items-center justify-center shadow-lg"
-            >
-              <Camera className="h-8 w-8 text-white" />
-            </motion.div>
-            <motion.h1
-              initial={{ x: -100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-playfair font-bold gradient-text"
-            >
-              ZM Studio
-            </motion.h1>
-          </div>
+          <motion.h1
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-playfair font-bold gradient-text text-center"
+            style={{
+              filter: `drop-shadow(0 0 20px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 40px rgba(59, 130, 246, 0.3))`
+            }}
+          >
+            ZM Studio
+          </motion.h1>
         </motion.div>
 
         {/* Typewriter Effect */}
@@ -139,12 +131,15 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mb-8 h-20 flex items-center justify-center"
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-poppins font-light text-white text-shadow">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-poppins font-light glow-text-strong">
             {currentText}
             <motion.span
               animate={{ opacity: [1, 0] }}
               transition={{ duration: 0.8, repeat: Infinity }}
               className="text-primary-400"
+              style={{
+                textShadow: `0 0 10px rgba(59, 130, 246, 0.8), 0 0 20px rgba(59, 130, 246, 0.5)`
+              }}
             >
               |
             </motion.span>
@@ -158,7 +153,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 1 }}
           className="mb-12"
         >
-          <motion.p className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-poppins font-light max-w-4xl mx-auto">
+          <motion.p className="text-xl md:text-2xl lg:text-3xl glow-text font-poppins font-light max-w-4xl mx-auto">
             {"Professional Wedding & Event Photography in Edmonton".split('').map((char, index) => (
               <motion.span
                 key={index}
@@ -259,12 +254,12 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* Enhanced Scroll Indicator */}
+      {/* Enhanced Scroll Indicator - Moved Higher */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-30"
       >
         <motion.div
           animate={{ y: [0, 15, 0] }}
@@ -272,12 +267,12 @@ const Hero = () => {
           className="flex flex-col items-center text-white/80 cursor-pointer group"
           onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
         >
-          <span className="text-sm mb-3 font-poppins font-light group-hover:text-primary-400 transition-colors">
+          <span className="text-lg mb-4 font-poppins font-light group-hover:text-primary-400 transition-colors glow-text">
             Discover Our Story
           </span>
           <motion.div
             whileHover={{ scale: 1.2 }}
-            className="p-2 rounded-full glass-effect group-hover:bg-primary-500/20 transition-all duration-300"
+            className="p-3 rounded-full glass-effect group-hover:bg-primary-500/20 transition-all duration-300"
           >
             <ArrowDown className="h-6 w-6" />
           </motion.div>

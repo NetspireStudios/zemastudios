@@ -11,30 +11,42 @@ import Contact from './components/Contact'
 import Navigation from './components/Navigation'
 import Preloader from './components/Preloader'
 import WaveTransition from './components/WaveTransition'
+import ParallaxWaveTransition from './components/ParallaxWaveTransition'
+import FullScreenWaveOverlay from './components/FullScreenWaveOverlay'
+import WaveTransitionSection from './components/WaveTransitionSection'
 
 export default function Home() {
   return (
     <>
       <Preloader />
+      
       <main className="relative overflow-x-hidden">
         <Navigation />
-        <div className="relative">
+        
+        {/* Hero Section */}
+        <div className="relative z-10">
           <Hero />
-          <WaveTransition variant="bottom" color="transparent" />
         </div>
-        <div className="relative">
+        
+        {/* MASSIVE Wave Transition Section - 300vh height */}
+        <WaveTransitionSection />
+        
+        {/* All Other Sections - After the wave transition */}
+        <div className="relative z-20">
           <About />
-          <WaveTransition variant="bottom" color="primary" />
         </div>
-        <div className="relative">
+        
+        <div className="relative z-30">
           <Services />
-          <WaveTransition variant="bottom" color="secondary" />
         </div>
-        <div className="relative">
+        
+        <div className="relative z-40">
           <Gallery />
-          <WaveTransition variant="bottom" color="white" />
         </div>
-        <Contact />
+        
+        <div className="relative z-50">
+          <Contact />
+        </div>
       </main>
     </>
   )
