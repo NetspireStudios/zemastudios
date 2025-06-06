@@ -114,9 +114,10 @@ const Hero = () => {
         >
           <div className="flex items-center justify-center space-x-4 mb-4">
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="w-16 h-16 rounded-full bg-gradient-to-r from-primary-400 to-secondary-400 flex items-center justify-center"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="w-16 h-16 rounded-full bg-gradient-to-r from-primary-400 to-secondary-400 flex items-center justify-center shadow-lg"
             >
               <Camera className="h-8 w-8 text-white" />
             </motion.div>
@@ -124,7 +125,7 @@ const Hero = () => {
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-4xl md:text-6xl font-playfair font-bold gradient-text"
+              className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-playfair font-bold gradient-text"
             >
               ZM Studio
             </motion.h1>
@@ -138,7 +139,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mb-8 h-20 flex items-center justify-center"
         >
-          <h2 className="text-2xl md:text-4xl font-poppins font-light text-white text-shadow">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-poppins font-light text-white text-shadow">
             {currentText}
             <motion.span
               animate={{ opacity: [1, 0] }}
@@ -157,7 +158,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 1 }}
           className="mb-12"
         >
-          <motion.p className="text-lg md:text-xl text-gray-300 font-poppins font-light">
+          <motion.p className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-poppins font-light max-w-4xl mx-auto">
             {"Professional Wedding & Event Photography in Edmonton".split('').map((char, index) => (
               <motion.span
                 key={index}
@@ -212,7 +213,6 @@ const Hero = () => {
         <motion.div
           animate={{ 
             y: [0, -30, 0],
-            rotate: [0, 360],
             scale: [1, 1.2, 1]
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -222,7 +222,6 @@ const Hero = () => {
           animate={{ 
             y: [0, -40, 0],
             x: [0, 20, 0],
-            rotate: [0, -360],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           className="absolute top-40 right-20 w-8 h-8 bg-gradient-to-r from-secondary-400 to-primary-300 rounded-full opacity-40"
@@ -231,7 +230,6 @@ const Hero = () => {
           animate={{ 
             y: [0, -25, 0],
             scale: [1, 1.5, 1],
-            rotate: [0, 180, 360]
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
           className="absolute bottom-40 left-20 w-4 h-4 bg-gradient-to-r from-primary-300 to-secondary-500 rounded-full opacity-50"
@@ -249,7 +247,6 @@ const Hero = () => {
             animate={{
               y: [0, -20, 0],
               opacity: [0.3, 0.6, 0.3],
-              rotate: [0, 360],
             }}
             transition={{
               duration: 4 + i,

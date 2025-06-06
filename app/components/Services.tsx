@@ -88,7 +88,6 @@ const Services = () => {
               y: [0, -50, 0],
               opacity: [0.1, 0.4, 0.1],
               scale: [0.3, 1, 0.3],
-              rotate: [0, 360],
             }}
             transition={{
               duration: 6 + Math.random() * 4,
@@ -127,8 +126,8 @@ const Services = () => {
               className="glass-effect p-6 rounded-xl hover:bg-white/15 transition-all duration-300"
             >
               <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
                 className="w-16 h-16 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center mb-4"
               >
                 <service.icon className="h-8 w-8 text-white" />

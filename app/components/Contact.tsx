@@ -165,8 +165,8 @@ const Contact = () => {
                   className="flex items-center space-x-6 glass-effect p-6 rounded-xl hover:bg-white/10 transition-all duration-300"
                 >
                   <motion.div
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
                     className={`w-14 h-14 bg-gradient-to-r ${info.color} rounded-full flex items-center justify-center shadow-lg`}
                   >
                     <info.icon className="h-7 w-7 text-white" />
@@ -188,8 +188,8 @@ const Contact = () => {
             >
               <div className="flex items-center space-x-3 mb-4">
                 <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
                   className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center"
                 >
                   <Clock className="h-5 w-5 text-white" />
@@ -251,8 +251,8 @@ const Contact = () => {
               className="flex items-center space-x-3 mb-8"
             >
               <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
                 className="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center shadow-lg"
               >
                 <Send className="h-6 w-6 text-white" />
