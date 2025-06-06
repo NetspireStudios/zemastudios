@@ -23,7 +23,7 @@ const About = () => {
           className="absolute inset-0"
         >
           <Image
-            src="/images/wedphoto5.png"
+            src="/images/Wedphoto5.png"
             alt="Wedding background"
             fill
             className="object-cover"
@@ -68,7 +68,7 @@ const About = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 gradient-text">
+            <h2 className="text-4xl md:text-5xl font-poppins font-bold mb-6 gradient-text text-center md:text-left">
               About ZM Studio
             </h2>
             <p className="text-lg text-gray-300 mb-6 leading-relaxed font-poppins">
@@ -120,16 +120,16 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-primary-900/50 to-transparent" />
             </div>
             
-            {/* Floating card */}
+            {/* Floating card - Compact mobile design */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute -bottom-6 -left-6 glass-effect p-6 rounded-xl"
+              className="absolute bottom-2 left-2 md:-bottom-6 md:-left-6 glass-effect p-3 md:p-6 rounded-lg md:rounded-xl"
             >
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary-400 mb-1">5+</div>
-                <div className="text-sm text-gray-300">Years Experience</div>
+                <div className="text-lg md:text-2xl font-medium text-primary-400 mb-0.5 md:mb-1 font-poppins">5+</div>
+                <div className="text-[10px] md:text-sm text-gray-300 font-poppins font-light leading-tight">Years<br className="md:hidden" />Experience</div>
               </div>
             </motion.div>
 
@@ -137,11 +137,11 @@ const About = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="absolute -top-6 -right-6 glass-effect p-6 rounded-xl"
+              className="absolute top-2 right-2 md:-top-6 md:-right-6 glass-effect p-3 md:p-6 rounded-lg md:rounded-xl"
             >
               <div className="text-center">
-                <div className="text-2xl font-bold text-secondary-400 mb-1">100+</div>
-                <div className="text-sm text-gray-300">Happy Couples</div>
+                <div className="text-lg md:text-2xl font-medium text-secondary-400 mb-0.5 md:mb-1 font-poppins">100+</div>
+                <div className="text-[10px] md:text-sm text-gray-300 font-poppins font-light leading-tight">Happy<br className="md:hidden" />Couples</div>
               </div>
             </motion.div>
           </motion.div>

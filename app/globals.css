@@ -8,7 +8,11 @@
   }
   
   body {
-    @apply bg-slate-900 text-white overflow-x-hidden;
+    @apply bg-slate-900 text-white overflow-x-hidden font-poppins;
+  }
+  
+  * {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
 }
 

@@ -76,24 +76,7 @@ const ImageSlider = ({
         </AnimatePresence>
       </div>
 
-      {/* Navigation Arrows - Hidden */}
-
-      {/* Dots Indicator */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
-        {images.map((_, index) => (
-          <motion.button
-            key={index}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full border border-white/40 transition-all duration-300 ${
-              index === currentIndex 
-                ? 'bg-white shadow-lg shadow-white/30' 
-                : 'bg-white/30 hover:bg-white/50'
-            }`}
-          />
-        ))}
-      </div>
+      {/* Auto-play only - no manual controls */}
 
       {/* Progress Bar */}
       {autoPlay && (

@@ -106,7 +106,7 @@ const Services = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 gradient-text">
+          <h2 className="text-4xl md:text-5xl font-poppins font-bold mb-6 gradient-text">
             Our Services
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto font-poppins">

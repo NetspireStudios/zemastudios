@@ -46,7 +46,7 @@ const Hero = () => {
     '/images/Wedphoto2.png',
     '/images/Wedphoto3.png',
     '/images/Wedphoto4.png',
-    '/images/wedphoto5.png'
+    '/images/Wedphoto5.png'
   ]
 
   return (
@@ -115,7 +115,7 @@ const Hero = () => {
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-playfair font-bold gradient-text text-center"
+            className="text-6xl md:text-8xl lg:text-9xl xl:text-[12rem] font-poppins font-bold gradient-text text-center"
             style={{
               filter: `drop-shadow(0 0 20px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 40px rgba(59, 130, 246, 0.3))`
             }}
@@ -255,32 +255,7 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* Perfectly Centered Scroll Indicator */}
-      <div className="absolute bottom-24 left-0 right-0 z-30">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.5 }}
-          className="flex justify-center"
-        >
-          <motion.div
-            animate={{ y: [0, 15, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center text-white/80 cursor-pointer group"
-            onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            <span className="text-lg mb-4 font-poppins font-light group-hover:text-primary-400 transition-colors glow-text text-center">
-              Discover Our Story
-            </span>
-            <motion.div
-              whileHover={{ scale: 1.2 }}
-              className="p-3 rounded-full glass-effect group-hover:bg-primary-500/20 transition-all duration-300"
-            >
-              <ArrowDown className="h-6 w-6" />
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </div>
+
     </section>
   )
 }
